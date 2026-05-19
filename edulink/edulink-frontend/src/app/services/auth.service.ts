@@ -14,10 +14,10 @@ export class AuthService {
   login(req: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.base}/login`, req).pipe(
       tap(res => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('role', res.role);
-        localStorage.setItem('email', res.email);
-        localStorage.setItem('name', res.name || '');
+        sessionStorage.setItem('token', res.token);
+        sessionStorage.setItem('role', res.role);
+        sessionStorage.setItem('email', res.email);
+        sessionStorage.setItem('name', res.name || '');
       })
     );
   }
@@ -31,14 +31,14 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 
-  getToken(): string | null { return localStorage.getItem('token'); }
-  getRole(): string | null { return localStorage.getItem('role'); }
-  getEmail(): string | null { return localStorage.getItem('email'); }
-  getName(): string | null { return localStorage.getItem('name'); }
+  getToken(): string | null { return sessionStorage.getItem('token'); }
+  getRole(): string | null { return sessionStorage.getItem('role'); }
+  getEmail(): string | null { return sessionStorage.getItem('email'); }
+  getName(): string | null { return sessionStorage.getItem('name'); }
   isLoggedIn(): boolean { return !!this.getToken(); }
 
   getMe(): Observable<User> { return this.http.get<User>(`${this.base}/me`); }
