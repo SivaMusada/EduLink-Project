@@ -13,8 +13,8 @@
         <module name="learning-service" />
         <module name="reporting-service" />
         <module name="student-service" />
-        <module name="identity-service" />
         <module name="eureka-server" />
+        <module name="identity-service" />
         <module name="exam-service" />
         <module name="notification-service" />
       </profile>

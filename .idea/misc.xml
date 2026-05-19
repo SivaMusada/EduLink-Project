@@ -14,6 +14,16 @@
         <option value="$PROJECT_DIR$/edulink project new try/student-service/pom.xml" />
         <option value="$PROJECT_DIR$/edulink project new try/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/edulink project new try/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/attendance-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/course-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/exam-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/identity-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/learning-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/reporting-service/pom.xml" />
+        <option value="$PROJECT_DIR$/edulink/student-service/pom.xml" />
       </list>
     </option>
   </component>
