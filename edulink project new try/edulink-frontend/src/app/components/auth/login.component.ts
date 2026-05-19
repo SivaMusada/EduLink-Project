@@ -28,7 +28,12 @@ import { ToastComponent } from '../shared/toast.component';
           </div>
           <div class="mb-4">
             <label>Password</label>
-            <input type="password" class="form-control mt-1" [(ngModel)]="password" name="password" placeholder="••••••••" required>
+            <div class="position-relative mt-1">
+              <input [type]="showPassword ? 'text' : 'password'" class="form-control pe-5" [(ngModel)]="password" name="password" placeholder="••••••••" required>
+              <button type="button" class="btn position-absolute top-50 end-0 translate-middle-y me-1 p-1 border-0 bg-transparent" (click)="showPassword = !showPassword" style="color:var(--text-secondary);line-height:1">
+                <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" style="font-size:1.1rem"></i>
+              </button>
+            </div>
           </div>
 
           <div class="rounded p-3 mb-3" *ngIf="statusMsg"
@@ -67,6 +72,7 @@ export class LoginComponent {
   password = '';
   loading = false;
   isDark = false;
+  showPassword = false;
   statusMsg: { type: string; text: string } | null = null;
 
   constructor(
