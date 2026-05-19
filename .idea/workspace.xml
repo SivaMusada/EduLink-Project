@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b559b03-f12c-4a1f-85c1-7f4b02d3a0bf" name="Changes" comment="" />
+    <list default="true" id="8b559b03-f12c-4a1f-85c1-7f4b02d3a0bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/edulink/edulink-frontend/src/app/components/layout/layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink/edulink-frontend/src/app/components/layout/layout.component.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

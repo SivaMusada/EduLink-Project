@@ -186,6 +186,7 @@ export class LayoutComponent implements OnInit {
     this.role = this.auth.getRole() || '';
     this.isDark = this.theme.isDark();
     this.navItems = this.navMap[this.role] || [];
+    this.displayName = this.auth.getName() || this.email;
 
     this.auth.getMe().pipe(catchError(() => of(null))).subscribe(user => {
       const name = (user as any)?.name?.trim() || this.email;
@@ -195,7 +196,7 @@ export class LayoutComponent implements OnInit {
         .map((w: string) => w[0].toUpperCase())
         .join('')
         .substring(0, 2);
-      localStorage.setItem('name', name);
+      sessionStorage.setItem('name', name);
       if ((user as any)?.userId) this.loadNotifications((user as any).userId);
       this.cdr.detectChanges();
     });
