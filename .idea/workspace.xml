@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b559b03-f12c-4a1f-85c1-7f4b02d3a0bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-notifications.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-notifications.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-reports.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-reports.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-staff.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-staff.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-students.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-students.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-users.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/admin/admin-users.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/layout/layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/layout/layout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-grades.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-grades.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-reports.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/components/student/student-reports.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/edulink-frontend/src/app/services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/identity-service/src/main/java/com/edulink/identity/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/identity-service/src/main/java/com/edulink/identity/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/identity-service/target/classes/com/edulink/identity/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/identity-service/target/classes/com/edulink/identity/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/dto/NotificationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/dto/NotificationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/entity/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/entity/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/repository/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/src/main/java/com/edulink/notification/service/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/dto/NotificationDto$Response.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/dto/NotificationDto$Response.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification$Category.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification$NotificationBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification$NotificationBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification$Status.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/entity/Notification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/repository/NotificationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/repository/NotificationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/service/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/edulink project new try/notification-service/target/classes/com/edulink/notification/service/NotificationService.class" afterDir="false" />
-    </list>
+    <list default="true" id="8b559b03-f12c-4a1f-85c1-7f4b02d3a0bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +14,7 @@
     <persistenceIdMap>
       <entry key="_C:/Users/2478105/EduLink" value="3DkRevIY73PHwOQNReojjJkRmg1" />
       <entry key="_C:/Users/2478116/EduLink" value="3DlAP80v6Jcxh3lCpqOAME9EUEV" />
+      <entry key="_C:/Users/2478116/EduLink-Project" value="3DsbgLFPe3hHy7n5nrptOaqXSDT" />
     </persistenceIdMap>
   </component>
   <component name="Git.Settings">
@@ -55,7 +28,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/SivaMusada/EduLink.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/SivaMusada/EduLink-Project.git&quot;,
     &quot;accountId&quot;: &quot;0876ecc7-bddb-4db6-9c38-23bea03c35b6&quot;
   }
 }</component>
@@ -84,16 +57,16 @@
     "Spring Boot.NotificationServiceApplication.executor": "Run",
     "Spring Boot.ReportingServiceApplication.executor": "Run",
     "Spring Boot.StudentServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "auth__serve",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/2478105/EduLink",
+    "last_opened_file_path": "C:/Users/2478116/EduLink-Project",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.IdentityServiceApplication">
+  <component name="RunManager" selected="Spring Boot.CourseServiceApplication">
     <configuration name="Service" type="CompoundRunConfigurationType">
       <toRun name="AttendanceServiceApplication" type="SpringBootApplicationConfigurationType" />
       <toRun name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" />
@@ -247,16 +220,16 @@
     </configuration>
     <list>
       <item itemvalue="Compound.Service" />
-      <item itemvalue="Spring Boot.AttendanceServiceApplication" />
-      <item itemvalue="Spring Boot.CourseServiceApplication" />
-      <item itemvalue="Spring Boot.ExamServiceApplication" />
       <item itemvalue="Spring Boot.IdentityServiceApplication" />
       <item itemvalue="Spring Boot.LearningServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
       <item itemvalue="Spring Boot.ReportingServiceApplication" />
       <item itemvalue="Spring Boot.StudentServiceApplication" />
-      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.AttendanceServiceApplication" />
+      <item itemvalue="Spring Boot.CourseServiceApplication" />
+      <item itemvalue="Spring Boot.ExamServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
     </list>
     <recent_temporary>
       <list>
