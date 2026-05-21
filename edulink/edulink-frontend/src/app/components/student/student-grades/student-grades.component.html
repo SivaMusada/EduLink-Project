@@ -1,0 +1,126 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">Grades & Performance</h2>
+      <p class="text-muted small mb-0">Track your academic performance</p>
+    </div>
+    <button class="btn btn-sm btn-outline-secondary" (click)="downloadReportCard()">⬇️ Report Card</button>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Total Exams</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:var(--text-primary)">{{ grades.length }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Passed</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:#10b981">{{ passed }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Average Score</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:var(--accent)">{{ avgScore }}%</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Best Grade</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:#10b981">{{ bestGrade }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h6 class="fw-bold mb-3" style="color:var(--text-primary)">📊 Score Trend</h6>
+        <div *ngIf="grades.length===0" class="text-center text-muted py-3">No data yet</div>
+        <div *ngFor="let g of grades; let i = index" class="mb-2">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small" style="color:var(--text-primary)">Exam #{{ g.examId }}</span>
+            <span class="small fw-semibold" [style.color]="g.score>=60?'#10b981':'#ef4444'">{{ g.score }}</span>
+          </div>
+          <div class="progress" style="height:8px;border-radius:4px">
+            <div class="progress-bar" [style.width]="g.score+'%'" [ngClass]="g.score>=60?'bg-success':'bg-danger'" style="border-radius:4px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h6 class="fw-bold mb-3" style="color:var(--text-primary)">📈 Grade Distribution</h6>
+        <div *ngIf="gradeBreakdown.length===0" class="text-center text-muted py-3">No data yet</div>
+        <div *ngFor="let g of gradeBreakdown" class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-semibold" style="color:var(--text-primary)">Grade {{ g.grade }}</span>
+            <span class="small text-muted">{{ g.count }} exam(s) — {{ g.pct }}%</span>
+          </div>
+          <div class="progress" style="height:14px;border-radius:7px">
+            <div class="progress-bar" [style.width]="g.pct+'%'" [style.background]="g.color" style="border-radius:7px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h6 class="fw-bold mb-3" style="color:var(--text-primary)">📚 Subject-wise Performance</h6>
+        <div *ngIf="subjectPerformance.length===0" class="text-center text-muted py-3">No data yet</div>
+        <div *ngFor="let s of subjectPerformance" class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-semibold" style="color:var(--text-primary)">{{ s.subject }}</span>
+            <span class="small" [style.color]="s.avg>=60?'#10b981':'#ef4444'">{{ s.avg }}%</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:5px">
+            <div class="progress-bar" [style.width]="s.avg+'%'" [ngClass]="s.avg>=70?'bg-success':s.avg>=50?'bg-warning':'bg-danger'" style="border-radius:5px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h6 class="fw-bold mb-3" style="color:var(--text-primary)">📋 Performance Metrics</h6>
+        <div *ngFor="let m of metrics" class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="small fw-semibold" style="color:var(--text-primary)">Course {{ m.courseId }}</span>
+            <span class="badge" [ngClass]="competencyBadge(m.score)">{{ competencyLabel(m.score) }}</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:5px">
+            <div class="progress-bar" [style.width]="m.score+'%'" [ngClass]="m.score>=70?'bg-success':m.score>=50?'bg-warning':'bg-danger'" style="border-radius:5px"></div>
+          </div>
+          <div class="small text-muted mt-1" *ngIf="m.score<60">⚠️ Skill gap — needs improvement</div>
+        </div>
+        <div *ngIf="metrics.length===0" class="text-center text-muted py-3">No performance data</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table table-hover mb-0">
+      <thead><tr><th>Exam ID</th><th>Course</th><th>Score</th><th>Grade</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let g of grades">
+          <td>#{{ g.examId }}</td>
+          <td>{{ examCourse(g.examId) }}</td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1" style="height:6px;max-width:80px">
+                <div class="progress-bar" [style.width]="g.score+'%'" [ngClass]="g.score>=60?'bg-success':'bg-danger'"></div>
+              </div>
+              <span>{{ g.score }}</span>
+            </div>
+          </td>
+          <td><span class="badge" [ngClass]="gradeBadge(g.grade)">{{ g.grade }}</span></td>
+          <td><span class="badge" [ngClass]="g.status==='PASS'?'bg-success':'bg-danger'">{{ g.status }}</span></td>
+        </tr>
+        <tr *ngIf="grades.length===0"><td colspan="5" class="text-center text-muted py-4">No grades found</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

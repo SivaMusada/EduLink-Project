@@ -18,11 +18,11 @@ public class ReportingController {
     private final ReportingService reportingService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD')")
     public ResponseEntity<List<ReportDto.Response>> getAllReports() { return ResponseEntity.ok(reportingService.getAllReports()); }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD')")
     public ResponseEntity<ReportDto.Response> getReport(@PathVariable Long id) { return ResponseEntity.ok(reportingService.getReport(id)); }
 
     @PostMapping
@@ -43,7 +43,7 @@ public class ReportingController {
     }
 
     @GetMapping("/scope/{scope}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD')")
     public ResponseEntity<List<ReportDto.Response>> getByScope(@PathVariable Report.ReportScope scope) {
         return ResponseEntity.ok(reportingService.getByScope(scope));
     }

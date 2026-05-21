@@ -69,13 +69,13 @@ public class AuthController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<List<UserDto.Response>> getUsers() {
         return ResponseEntity.ok(authService.getAllUsers());
     }
 
     @GetMapping("/users/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<UserDto.Response> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(authService.getUserById(id));
     }
@@ -125,7 +125,7 @@ public class AuthController {
     }
 
     @GetMapping("/audit-logs")
-    @PreAuthorize("hasAnyRole('ADMIN', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<List<AuditLogDto.Response>> getAuditLogs() {
         return ResponseEntity.ok(authService.getAuditLogs());
     }

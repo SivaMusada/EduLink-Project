@@ -1,0 +1,134 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="section-title mb-0">Students</h2>
+  </div>
+
+  <div *ngIf="activeTab==='list'">
+    <div class="d-flex gap-1 mb-3">
+      <button class="btn btn-sm" [ngClass]="filter==='ALL'?'btn-accent':'btn-outline-secondary'" (click)="setFilter('ALL')">All</button>
+      <button class="btn btn-sm" [ngClass]="filter==='ACTIVE'?'btn-accent':'btn-outline-secondary'" (click)="setFilter('ACTIVE')">Active</button>
+      <button class="btn btn-sm" [ngClass]="filter==='PENDING'?'btn-accent':'btn-outline-secondary'" (click)="setFilter('PENDING')">
+        Pending <span class="badge bg-warning text-dark ms-1">{{ pendingCount }}</span>
+      </button>
+    </div>
+    <div class="table-wrapper">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>Name</th><th>Email</th><th>Phone</th><th>Grade</th><th>DOB</th><th>Gender</th>
+            <th>Enrolled</th><th>Registration</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of filtered">
+            <td class="fw-semibold">{{ s.name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.phone }}</td>
+            <td><span class="badge bg-info text-dark">{{ s.gradeLevel || '—' }}</span></td>
+            <td>{{ s.dob }}</td>
+            <td>{{ s.gender }}</td>
+            <td>{{ s.enrollmentDate || '—' }}</td>
+            <td>
+              <span class="badge" [ngClass]="statusBadge(s.registrationStatus)">{{ statusLabel(s.registrationStatus) }}</span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1" (click)="viewStudent(s)">View</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteStudent(s)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="filtered.length===0">
+            <td colspan="9" class="text-center text-muted py-4">No students found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab==='assign' && role==='ADMIN'">
+    <div class="card p-4 mb-4">
+      <h6 class="fw-bold mb-3" style="color:var(--text-primary)">Select Teacher & Class</h6>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label small">Teacher</label>
+          <select class="form-select" [(ngModel)]="assignTeacherId" (change)="onTeacherChange()">
+            <option value="">Select teacher</option>
+            <option *ngFor="let t of teachers" [value]="t.userId">{{ t.name }}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small">Class</label>
+          <select class="form-select" [(ngModel)]="assignClassId" [disabled]="!assignTeacherId" (change)="onClassChange()">
+            <option value="">Select class</option>
+            <option *ngFor="let cl of teacherClasses" [value]="cl.classId">
+              {{ cl.courseName }} — {{ cl.schedule || 'No schedule' }}
+            </option>
+          </select>
+          <div class="text-muted small mt-1" *ngIf="assignTeacherId && teacherClasses.length===0">No classes found for this teacher</div>
+        </div>
+        <div class="col-md-4" *ngIf="assignClassId">
+          <label class="form-label small">Assign by Grade</label>
+          <select class="form-select" [(ngModel)]="assignGrade" (change)="onGradeChange()">
+            <option value="">Select grade</option>
+            <option *ngFor="let g of gradeOptions" [value]="g">{{ g }}</option>
+          </select>
+          <div class="text-muted small mt-1" *ngIf="assignGrade && gradeStudents.length===0">No students in this grade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-4" *ngIf="assignClassId && assignGrade && gradeStudents.length > 0">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h6 class="fw-bold mb-0" style="color:var(--text-primary)">Students in {{ assignGrade }}</h6>
+          <p class="text-muted small mb-0">{{ gradeStudents.length }} student(s) not yet assigned to this class</p>
+        </div>
+        <button class="btn-accent btn-sm" (click)="confirmAssign()">
+          Assign All {{ gradeStudents.length }} Students
+        </button>
+      </div>
+      <div class="table-wrapper">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of gradeStudents">
+              <td class="fw-semibold">{{ s.name }}</td>
+              <td>{{ s.email }}</td>
+              <td>{{ s.phone }}</td>
+              <td><span class="badge" [ngClass]="statusBadge(s.registrationStatus)">{{ statusLabel(s.registrationStatus) }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal d-block" *ngIf="viewSelected" style="background:rgba(0,0,0,0.5)">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-4">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="fw-bold" style="color:var(--text-primary)">Student Details</h5>
+          <button class="btn-close" (click)="viewSelected=null"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Full Name</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.name }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Email</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.email }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Phone</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.phone }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Date of Birth</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.dob }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Gender</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.gender }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Grade Level</div><div class="fw-semibold" style="color:var(--text-primary)"><span class="badge bg-info text-dark">{{ viewSelected.gradeLevel || '—' }}</span></div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Enrollment Date</div><div class="fw-semibold" style="color:var(--text-primary)">{{ viewSelected.enrollmentDate || '—' }}</div></div></div>
+            <div class="col-12"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Address</div><div style="color:var(--text-primary)">{{ viewSelected.address }}</div></div></div>
+            <div class="col-md-6"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Registration Status</div><span class="badge" [ngClass]="statusBadge(viewSelected.registrationStatus)">{{ statusLabel(viewSelected.registrationStatus) }}</span></div></div>
+            <div class="col-md-6" *ngIf="viewSelected.studentId"><div class="p-3 rounded" style="background:var(--bg-secondary)"><div class="text-muted small mb-1">Student ID</div><div class="fw-semibold" style="color:var(--text-primary)">#{{ viewSelected.studentId }}</div></div></div>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" (click)="viewSelected=null">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

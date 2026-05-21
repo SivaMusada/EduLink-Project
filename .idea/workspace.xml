@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b559b03-f12c-4a1f-85c1-7f4b02d3a0bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/edulink/edulink-frontend/src/app/components/layout/layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/edulink/edulink-frontend/src/app/components/layout/layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +15,7 @@
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_C:/Users/2478105/EduLink" value="3DkRevIY73PHwOQNReojjJkRmg1" />
+      <entry key="_C:/Users/2478105/EduLink-Project" value="3DwoFY14m1F0DoM5MEgMSsWI2Me" />
       <entry key="_C:/Users/2478116/EduLink" value="3DlAP80v6Jcxh3lCpqOAME9EUEV" />
       <entry key="_C:/Users/2478116/EduLink-Project" value="3DsbgLFPe3hHy7n5nrptOaqXSDT" />
     </persistenceIdMap>
@@ -43,203 +44,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AttendanceServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ExamServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.LearningServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ReportingServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.StudentServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;auth__serve&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/2478116/EduLink-Project&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.AttendanceServiceApplication.executor": "Run",
+    "Spring Boot.CourseServiceApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.ExamServiceApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.LearningServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.ReportingServiceApplication.executor": "Run",
+    "Spring Boot.StudentServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/2478105/EduLink-Project",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
-}</component>
-  <component name="RunManager" selected="Compound.Service">
-    <configuration name="Service" type="CompoundRunConfigurationType">
-      <toRun name="AttendanceServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="ExamServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="IdentityServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="LearningServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="StudentServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.gateway.ApiGatewayApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.gateway.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AttendanceServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="attendance-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.attendance.AttendanceServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.attendance.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="course-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.course.CourseServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.course.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="eureka-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.eureka.EurekaServerApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.eureka.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ExamServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="exam-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.exam.ExamServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.exam.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="IdentityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="identity-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.identity.IdentityServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.identity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LearningServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="learning-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.learning.LearningServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.learning.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="notification-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.notification.NotificationServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.notification.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="reporting-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.reporting.ReportingServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.reporting.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="student-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edulink.student.StudentServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.edulink.student.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Compound.Service" />
-      <item itemvalue="Spring Boot.IdentityServiceApplication" />
-      <item itemvalue="Spring Boot.LearningServiceApplication" />
-      <item itemvalue="Spring Boot.NotificationServiceApplication" />
-      <item itemvalue="Spring Boot.ReportingServiceApplication" />
-      <item itemvalue="Spring Boot.StudentServiceApplication" />
-      <item itemvalue="Spring Boot.AttendanceServiceApplication" />
-      <item itemvalue="Spring Boot.CourseServiceApplication" />
-      <item itemvalue="Spring Boot.ExamServiceApplication" />
-      <item itemvalue="Spring Boot.ApiGatewayApplication" />
-      <item itemvalue="Spring Boot.EurekaServerApplication" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.EurekaServerApplication" />
-      </list>
-    </recent_temporary>
-  </component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

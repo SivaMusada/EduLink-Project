@@ -1,0 +1,101 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">My Reports</h2>
+      <p class="text-muted small mb-0">Download your academic reports and summaries</p>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Enrolled Courses</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:#4f46e5">{{ enrolledCourses }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Avg Score</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:#10b981">{{ avgScore }}%</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Attendance</div>
+        <div class="fw-bold" style="font-size:1.8rem;" [ngStyle]="{'color': attendancePct>=75?'#10b981':'#ef4444'}">{{ attendancePct }}%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card p-4 h-100">
+        <div class="text-center mb-3">
+          <div style="font-size:3rem">📊</div>
+          <h6 class="fw-bold mt-2" style="color:var(--text-primary)">Report Card</h6>
+          <p class="text-muted small">Complete academic performance with grades for all exams</p>
+        </div>
+        <div class="p-3 rounded mb-3" style="background:var(--bg-secondary)">
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Total Exams</span><span class="small fw-semibold" style="color:var(--text-primary)">{{ grades.length }}</span></div>
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Passed</span><span class="small fw-semibold" style="color:#10b981">{{ passed }}</span></div>
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Failed</span><span class="small fw-semibold" style="color:#ef4444">{{ failed }}</span></div>
+          <div class="d-flex justify-content-between"><span class="small text-muted">Average Score</span><span class="small fw-semibold" style="color:var(--accent)">{{ avgScore }}%</span></div>
+        </div>
+        <button class="btn-accent w-100" (click)="downloadReportCard()">⬇️ Download Report Card</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-4 h-100">
+        <div class="text-center mb-3">
+          <div style="font-size:3rem">📈</div>
+          <h6 class="fw-bold mt-2" style="color:var(--text-primary)">Performance Summary</h6>
+          <p class="text-muted small">Subject-wise performance and competency levels</p>
+        </div>
+        <div class="p-3 rounded mb-3" style="background:var(--bg-secondary)">
+          <div *ngFor="let s of subjectPerformance.slice(0,3)" class="mb-2">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="small text-muted">{{ s.subject }}</span>
+              <span class="small fw-semibold" [ngStyle]="{'color': s.avg>=60?'#10b981':'#ef4444'}">{{ s.avg }}%</span>
+            </div>
+            <div class="progress" style="height:4px">
+              <div class="progress-bar" [style.width]="s.avg+'%'" [ngClass]="s.avg>=60?'bg-success':'bg-danger'"></div>
+            </div>
+          </div>
+          <div *ngIf="subjectPerformance.length===0" class="text-muted small text-center">No data yet</div>
+        </div>
+        <button class="btn-accent w-100" (click)="downloadPerformance()">⬇️ Download Performance</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-4 h-100">
+        <div class="text-center mb-3">
+          <div style="font-size:3rem">📋</div>
+          <h6 class="fw-bold mt-2" style="color:var(--text-primary)">Attendance Report</h6>
+          <p class="text-muted small">Daily attendance records and monthly summary</p>
+        </div>
+        <div class="p-3 rounded mb-3" style="background:var(--bg-secondary)">
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Total Days</span><span class="small fw-semibold" style="color:var(--text-primary)">{{ attendance.length }}</span></div>
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Present</span><span class="small fw-semibold" style="color:#10b981">{{ present }}</span></div>
+          <div class="d-flex justify-content-between mb-1"><span class="small text-muted">Absent</span><span class="small fw-semibold" style="color:#ef4444">{{ absent }}</span></div>
+          <div class="d-flex justify-content-between"><span class="small text-muted">Rate</span>
+            <span class="small fw-semibold" [ngStyle]="{'color': attendancePct>=75?'#10b981':'#ef4444'}">{{ attendancePct }}%</span>
+          </div>
+        </div>
+        <button class="btn-accent w-100" (click)="downloadAttendance()">⬇️ Download Attendance</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 p-3 rounded" *ngIf="attendancePct < 75 && attendance.length > 0"
+    style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)">
+    <div class="d-flex align-items-center gap-2">
+      <span style="font-size:1.3rem">⚠️</span>
+      <div>
+        <div class="fw-semibold" style="color:#ef4444">Low Attendance Warning</div>
+        <div class="small text-muted">Your attendance is {{ attendancePct }}%, below the required 75%. Please attend regularly.</div>
+      </div>
+    </div>
+  </div>
+</div>

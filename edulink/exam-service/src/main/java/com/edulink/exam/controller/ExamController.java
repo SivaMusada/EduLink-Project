@@ -18,14 +18,12 @@ public class ExamController {
 
     private final ExamService examService;
 
-    // ── Exams ────────────────────────────────────────────────────────────────
-
     @GetMapping("/api/exams")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<List<ExamDto.Response>> getAllExams() { return ResponseEntity.ok(examService.getAllExams()); }
 
     @GetMapping("/api/exams/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<ExamDto.Response> getExam(@PathVariable Long id) { return ResponseEntity.ok(examService.getExam(id)); }
 
     @GetMapping("/api/exams/grade/{gradeLevel}")
@@ -109,11 +107,11 @@ public class ExamController {
     // ── Grades ───────────────────────────────────────────────────────────────
 
     @GetMapping("/api/grades")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD')")
     public ResponseEntity<List<GradeDto.Response>> getAllGrades() { return ResponseEntity.ok(examService.getAllGrades()); }
 
     @GetMapping("/api/grades/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD')")
     public ResponseEntity<GradeDto.Response> getGrade(@PathVariable Long id) { return ResponseEntity.ok(examService.getGrade(id)); }
 
     @PostMapping("/api/grades")

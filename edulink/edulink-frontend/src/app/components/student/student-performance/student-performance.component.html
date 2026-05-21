@@ -1,0 +1,26 @@
+<div>
+  <h2 class="section-title">My Performance & Competency</h2>
+  <div class="row g-3">
+    <div class="col-md-6" *ngFor="let m of metrics">
+      <div class="card p-3">
+        <div class="d-flex justify-content-between mb-2">
+          <div>
+            <div class="fw-semibold" style="color:var(--text-primary)">Course {{ m.courseId }}</div>
+            <div class="text-muted small">{{ m.date }}</div>
+          </div>
+          <span class="badge" [ngClass]="badge(m.score)">{{ label(m.score) }}</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="progress flex-grow-1" style="height:10px">
+            <div class="progress-bar" [style.width]="m.score+'%'" [ngClass]="color(m.score)"></div>
+          </div>
+          <span class="fw-bold" style="color:var(--text-primary)">{{ m.score }}%</span>
+        </div>
+        <div class="mt-2 p-2 rounded small" *ngIf="m.score < 60" style="background:rgba(239,68,68,0.1);color:#ef4444">
+          ⚠️ Skill gap identified — consider additional practice
+        </div>
+      </div>
+    </div>
+    <div *ngIf="metrics.length===0" class="col-12 text-center text-muted py-5">No performance data available yet</div>
+  </div>
+</div>

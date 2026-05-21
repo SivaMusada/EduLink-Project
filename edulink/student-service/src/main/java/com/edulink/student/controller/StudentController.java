@@ -19,7 +19,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD')")
     public ResponseEntity<List<StudentDto.Response>> getAll() { return ResponseEntity.ok(studentService.getAllStudents()); }
     @GetMapping("/my-enrollments")
     @PreAuthorize("hasRole('STUDENT')")
@@ -38,7 +38,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<StudentDto.Response> getById(@PathVariable Long id) { return ResponseEntity.ok(studentService.getStudent(id)); }
 
     @PostMapping
@@ -75,7 +75,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/documents")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'COMPLIANCE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     public ResponseEntity<List<StudentDocumentDto.Response>> getDocuments(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getDocuments(id));
     }
@@ -110,13 +110,13 @@ public class StudentController {
     }
 
     @GetMapping("/enrollments")
-    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD', 'COMPLIANCE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BOARD')")
     public ResponseEntity<List<EnrollmentDto.Response>> getAllEnrollments() {
         return ResponseEntity.ok(studentService.getAllEnrollments());
     }
 
     @GetMapping("/{id}/enrollments")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<List<EnrollmentDto.Response>> getEnrollmentsByStudent(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getEnrollmentsByStudent(id));
     }

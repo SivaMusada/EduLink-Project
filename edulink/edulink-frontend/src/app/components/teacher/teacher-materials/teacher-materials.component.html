@@ -1,0 +1,162 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">Learning Materials</h2>
+      <p class="text-muted small mb-0">{{ filtered.length }} material(s) across your courses</p>
+    </div>
+    <button class="btn-accent" (click)="openUpload()">+ Upload Material</button>
+  </div>
+
+  <div class="card p-3 mb-4">
+    <div class="row g-2">
+      <div class="col-md-5">
+        <input class="form-control" [(ngModel)]="search" placeholder="🔍 Search materials..." (input)="applyFilter()">
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="filterCourse" (change)="applyFilter()">
+          <option value="">All My Courses</option>
+          <option *ngFor="let c of courses" [value]="c.courseId">{{ c.title }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4" *ngFor="let c of courses">
+      <div class="card p-3">
+        <div class="d-flex justify-content-between mb-2">
+          <span class="fw-semibold small" style="color:var(--text-primary)">{{ c.title }}</span>
+          <span class="badge bg-info text-dark">{{ c.gradeLevel }}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-1">
+          <span class="small text-muted">Materials uploaded</span>
+          <span class="small fw-semibold" style="color:var(--text-primary)">{{ materialCount(c.courseId) }}</span>
+        </div>
+        <div class="progress" style="height:6px">
+          <div class="progress-bar" style="background:var(--accent)" [style.width]="materialPct(c.courseId)+'%'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-4" *ngFor="let m of filtered">
+      <div class="card p-3 h-100">
+        <div class="d-flex align-items-start gap-3">
+          <div class="rounded d-flex align-items-center justify-content-center"
+            style="width:48px;height:48px;min-width:48px;font-size:1.6rem;background:var(--bg-secondary)">
+            {{ fileIcon(m) }}
+          </div>
+          <div class="flex-grow-1 overflow-hidden">
+            <div class="fw-semibold text-truncate" style="color:var(--text-primary)">{{ m.title }}</div>
+            <div class="text-muted small">{{ courseName(m.courseId) }}</div>
+            <div class="text-muted small">{{ m.uploadedDate }}</div>
+            <div class="text-muted small" *ngIf="m.fileUri">{{ fileType(m) }}</div>
+          </div>
+          <span class="badge" [ngClass]="m.status==='ACTIVE'?'bg-success':'bg-secondary'">{{ m.status }}</span>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-sm btn-outline-primary flex-grow-1" (click)="openFile(m)" *ngIf="m.fileUri">
+            {{ isBase64(m.fileUri) ? '⬇️ Download' : '🔗 Open' }}
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" (click)="edit(m)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="delete(m.materialId)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filtered.length===0" class="col-12 text-center text-muted py-5">
+      <div style="font-size:3rem">📂</div>
+      <p class="mt-2">No materials uploaded yet</p>
+    </div>
+  </div>
+
+  <div class="modal d-block" *ngIf="showModal" style="background:rgba(0,0,0,0.5)">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="fw-bold" style="color:var(--text-primary)">{{ editId ? 'Edit Material' : 'Upload Material' }}</h5>
+          <button class="btn-close" (click)="showModal=false"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label>Course <span class="text-danger">*</span></label>
+            <select class="form-select mt-1" [(ngModel)]="form.courseId">
+              <option value="">Select course</option>
+              <option *ngFor="let c of courses" [value]="c.courseId">{{ c.title }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label>Title <span class="text-danger">*</span></label>
+            <input class="form-control mt-1" [(ngModel)]="form.title" placeholder="e.g. Chapter 1 - Introduction">
+          </div>
+
+          <div class="mb-3" *ngIf="!editId">
+            <label>File <span class="text-danger">*</span></label>
+            <div class="mt-1 p-4 rounded text-center"
+              style="border:2px dashed var(--border-color);background:var(--bg-secondary);cursor:pointer"
+              (click)="fileInput.click()"
+              (dragover)="$event.preventDefault()"
+              (drop)="onDrop($event)">
+              <input #fileInput type="file" class="d-none"
+                accept=".pdf,.doc,.docx,.ppt,.pptx,.mp4,.mp3,.png,.jpg,.jpeg,.txt"
+                (change)="onFileChange($event)">
+
+              <div *ngIf="!selectedFile">
+                <div style="font-size:2.5rem">📁</div>
+                <div class="fw-semibold mt-2" style="color:var(--text-primary)">Click or drag file here</div>
+                <div class="text-muted small mt-1">PDF, DOC, PPT, MP4, MP3, Images (max 50MB)</div>
+              </div>
+
+              <div *ngIf="selectedFile" class="d-flex align-items-center gap-3 justify-content-center">
+                <span style="font-size:2rem">{{ fileIcon({mimeType: selectedFile.type}) }}</span>
+                <div class="text-start">
+                  <div class="fw-semibold" style="color:var(--text-primary)">{{ selectedFile.name }}</div>
+                  <div class="text-muted small">{{ formatSize(selectedFile.size) }}</div>
+                </div>
+                <button class="btn btn-sm btn-outline-danger ms-2" type="button" (click)="clearFile($event)">✕</button>
+              </div>
+            </div>
+            <div class="text-danger small mt-1" *ngIf="fileError">{{ fileError }}</div>
+
+            <div class="mt-2" *ngIf="uploading">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="small text-muted">Uploading...</span>
+                <span class="small text-muted">{{ uploadProgress }}%</span>
+              </div>
+              <div class="progress" style="height:6px">
+                <div class="progress-bar" style="background:var(--accent)" [style.width]="uploadProgress+'%'"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3 p-3 rounded" style="background:var(--bg-secondary)" *ngIf="editId && form.fileUri">
+            <div class="d-flex align-items-center gap-2">
+              <span style="font-size:1.5rem">{{ fileIcon(form) }}</span>
+              <div>
+                <div class="small fw-semibold" style="color:var(--text-primary)">Current file attached</div>
+                <div class="text-muted small">{{ fileType(form) }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Status</label>
+            <select class="form-select mt-1" [(ngModel)]="form.status">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" (click)="showModal=false">Cancel</button>
+          <button class="btn-accent" (click)="save()" [disabled]="uploading">
+            <span *ngIf="uploading" class="spinner-border spinner-border-sm me-1"></span>
+            {{ editId ? 'Update' : 'Upload' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

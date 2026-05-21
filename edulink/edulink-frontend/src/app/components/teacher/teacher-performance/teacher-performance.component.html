@@ -1,0 +1,97 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">Student Performance</h2>
+      <p class="text-muted small mb-0">Track and record student progress across your courses</p>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Total Records</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:var(--text-primary)">{{ metrics.length }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Class Average</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:var(--accent)">{{ classAvg }}%</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card text-center">
+        <div class="text-muted small mb-1">Top Performers</div>
+        <div class="fw-bold" style="font-size:1.8rem;color:#10b981">{{ topPerformers }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card p-3 mb-4">
+    <div class="row g-2">
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="filterCourse" (change)="applyFilter()">
+          <option value="">All Courses</option>
+          <option *ngFor="let c of courses" [value]="c.courseId">{{ c.title }}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="filterLevel" (change)="applyFilter()">
+          <option value="">All Levels</option>
+          <option value="expert">Expert (≥85%)</option>
+          <option value="proficient">Proficient (70-84%)</option>
+          <option value="developing">Developing (50-69%)</option>
+          <option value="beginner">Beginner (&lt;50%)</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="filterMetric" (change)="applyFilter()">
+          <option value="">All Metrics</option>
+          <option value="above_avg">Above Class Average</option>
+          <option value="below_avg">Below Class Average</option>
+          <option value="improving">Top Performers</option>
+          <option value="at_risk">At Risk (&lt;50%)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6 col-lg-4" *ngFor="let m of filtered">
+      <div class="card p-3" [style.border-left]="'4px solid ' + levelColor(m.score)">
+        <div class="d-flex justify-content-between mb-2">
+          <div>
+            <div class="fw-semibold small" style="color:var(--text-primary)">Student #{{ m.studentId }}</div>
+            <div class="text-muted small">{{ courseName(m.courseId) }} • {{ m.date }}</div>
+          </div>
+          <span class="badge" [ngClass]="competencyBadge(m.score)">{{ competencyLabel(m.score) }}</span>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <div class="progress flex-grow-1" style="height:10px;border-radius:5px">
+            <div class="progress-bar" [style.width]="m.score+'%'" [style.background]="levelColor(m.score)" style="border-radius:5px"></div>
+          </div>
+          <span class="fw-bold small" style="color:var(--text-primary)">{{ m.score }}%</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filtered.length===0" class="col-12 text-center text-muted py-5">No performance data found</div>
+  </div>
+
+  <div class="card p-4">
+    <h6 class="fw-bold mb-3" style="color:var(--text-primary)">📊 Course-wise Summary</h6>
+    <div class="table-wrapper">
+      <table class="table table-hover mb-0">
+        <thead><tr><th>Course</th><th>Students Tracked</th><th>Avg Score</th><th>Top Score</th></tr></thead>
+        <tbody>
+          <tr *ngFor="let c of courseSummary">
+            <td class="fw-semibold" style="color:var(--text-primary)">{{ c.title }}</td>
+            <td>{{ c.count }}</td>
+            <td><span [ngStyle]="{'color': c.avg>=60?'#10b981':'#ef4444'}">{{ c.avg }}%</span></td>
+            <td><span class="badge bg-success">{{ c.top }}%</span></td>
+          </tr>
+          <tr *ngIf="courseSummary.length===0"><td colspan="4" class="text-center text-muted py-3">No data</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

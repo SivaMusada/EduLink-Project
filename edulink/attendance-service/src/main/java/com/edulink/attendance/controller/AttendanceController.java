@@ -17,15 +17,15 @@ public class AttendanceController {
     private final AttendanceService attendanceService;
 
     @GetMapping("/api/attendance")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD')")
     public ResponseEntity<List<AttendanceDto.Response>> getAllAttendance() { return ResponseEntity.ok(attendanceService.getAllAttendance()); }
 
     @GetMapping("/api/attendance/student/{studentId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<List<AttendanceDto.Response>> getByStudent(@PathVariable Long studentId) { return ResponseEntity.ok(attendanceService.getByStudentId(studentId)); }
 
     @GetMapping("/api/attendance/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<AttendanceDto.Response> getAttendance(@PathVariable Long id) { return ResponseEntity.ok(attendanceService.getAttendance(id)); }
 
     @PostMapping("/api/attendance")
@@ -46,11 +46,11 @@ public class AttendanceController {
     }
 
     @GetMapping("/api/performance")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'BOARD')")
     public ResponseEntity<List<PerformanceMetricDto.Response>> getAllMetrics() { return ResponseEntity.ok(attendanceService.getAllMetrics()); }
 
     @GetMapping("/api/performance/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<PerformanceMetricDto.Response> getMetric(@PathVariable Long id) { return ResponseEntity.ok(attendanceService.getMetric(id)); }
 
     @PostMapping("/api/performance")

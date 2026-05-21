@@ -1,0 +1,77 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">My Schedule</h2>
+      <p class="text-muted small mb-0">{{ classes.length }} class(es) assigned to you</p>
+    </div>
+  </div>
+
+  <div *ngIf="classes.length===0" class="text-center py-5">
+    <div style="font-size:3rem">🗓️</div>
+    <h5 class="mt-3" style="color:var(--text-primary)">No classes assigned yet</h5>
+    <p class="text-muted">Admin will assign classes to you.</p>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-4" *ngFor="let cl of classes">
+      <div class="card p-4 h-100" style="border-left:4px solid var(--accent)">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <div class="fw-bold" style="color:var(--text-primary)">{{ courseName(cl.courseId) }}</div>
+          </div>
+          <span class="badge" [ngClass]="cl.status==='ACTIVE'?'bg-success':'bg-secondary'">{{ cl.status }}</span>
+        </div>
+
+        <div class="p-3 rounded mb-3" style="background:var(--bg-secondary)">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span>🕐</span>
+            <div>
+              <div class="small text-muted">Schedule</div>
+              <div class="fw-semibold small" style="color:var(--text-primary)">{{ cl.schedule || 'Not set' }}</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span>🎓</span>
+            <div>
+              <div class="small text-muted">Grade Level</div>
+              <div class="fw-semibold small" style="color:var(--text-primary)">{{ courseGrade(cl.courseId) }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal d-block" *ngIf="showModal" style="background:rgba(0,0,0,0.5)">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="fw-bold" style="color:var(--text-primary)">Edit Schedule — {{ courseName(editClass?.courseId) }}</h5>
+          <button class="btn-close" (click)="showModal=false"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <label>Days</label>
+            <div class="d-flex flex-wrap gap-2 mt-1">
+              <div *ngFor="let d of weekDays" class="form-check form-check-inline m-0">
+                <input class="form-check-input" type="checkbox" [id]="'d-'+d" [checked]="picker.days.includes(d)" (change)="toggleDay(d)">
+                <label class="form-check-label small" [for]="'d-'+d">{{ d }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-2 mb-3 mt-2">
+            <div class="col-6"><label>Start Time</label><input type="time" class="form-control mt-1" [(ngModel)]="picker.startTime"></div>
+            <div class="col-6"><label>End Time</label><input type="time" class="form-control mt-1" [(ngModel)]="picker.endTime"></div>
+          </div>
+          <div class="p-2 rounded small" style="background:var(--bg-secondary);color:var(--text-primary)">
+            Preview: <strong>{{ buildSchedule() }}</strong>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" (click)="showModal=false">Cancel</button>
+          <button class="btn-accent" (click)="saveSchedule()">Save Schedule</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

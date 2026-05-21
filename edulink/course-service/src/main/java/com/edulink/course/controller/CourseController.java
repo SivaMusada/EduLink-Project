@@ -17,11 +17,11 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping("/api/courses")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<List<CourseDto.Response>> getAllCourses() { return ResponseEntity.ok(courseService.getAllCourses()); }
 
     @GetMapping("/api/courses/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD', 'COMPLIANCE', 'REGULATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT', 'BOARD')")
     public ResponseEntity<CourseDto.Response> getCourse(@PathVariable Long id) { return ResponseEntity.ok(courseService.getCourse(id)); }
 
     @PostMapping("/api/courses")
